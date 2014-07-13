@@ -1,0 +1,39 @@
+{% extends 'base_template.html' %}
+{% load humanize %}
+
+
+{% block title %}Profile - {{ user.first_name|title }}{% endblock %}
+{% block content %}
+    <p>Hi {{ user.first_name|title }} {{ user.last_name|title }}, you were last here {{ user.last_login|naturalday }}, {{ user.last_login|naturaltime }}</p>
+    <p>Your email address is <a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+    <p>Joined: {{ user.date_joined|timesince }} ago</p>
+    <p>Phone: {{ user.phone|phone2numeric }}</p>
+    <hr>
+    <h3>{{ user.first_name|title }}'s War Stats</h3>
+    Balance: {{ user.balance }}<br>
+    Score: {{ score }}<br>
+    War wins: {{ war_wins }}<br>
+    War losses: {{ war_losses }}<br>
+    War ties: {{ war_ties }}<br>
+    Percent wins: {{ percent_win|floatformat:3 }}%<br>
+
+
+    <hr>
+    <h3>System Wide - War Stats</h3>
+    Overall Score: {{ total_score }}<br>
+    Overall War wins: {{ total_war_wins }}<br>
+    Overall War losses: {{ total_war_losses }}<br>
+    Overall War ties: {{ total_war_ties }}<br>
+    Overall Percent wins: {{ total_percent_win|floatformat:3 }}%<br>
+
+    <h3>Leaderboard</h3>
+    <ol>
+    {% for winner in winners_list %}
+        <li>{{ winner.player__first_name }}  - points: {{ winner.result__sum }}</li>
+    {% endfor %}
+    </ol>
+    <hr>
+    {% for game in war_games %}
+        {{ game.get_result_display }}
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,40 @@
+body {
+    font-family: Helvetica, sans-serif;
+    width:700px;
+    margin: 10px auto;
+
+}
+
+footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
+   background: #2a604c;
+    color:#FFF;
+    padding: 10px;
+    text-align: center;
+}
+.card {
+    background: #2a604c;
+    color:#FFF;
+    width:110px;
+    height:160px;
+    /*padding:10px;*/
+    margin: 10px;
+    float:left;
+    font-size: 1.2em;
+    box-shadow: 10px 4px 2px 2px #888888;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+    -moz-box-shadow: 10px 4px 2px 2px #888888;
+    -webkit-box-shadow: 10px 4px 2px 2px #888888;
+    box-shadow: 10px 4px 2px 2px #888888;
+    transform:rotate(7deg);
+    -ms-transform:rotate(7deg);
+    -moz-transform:rotate(7deg);
+    -webkit-transform:rotate(7deg);
+}

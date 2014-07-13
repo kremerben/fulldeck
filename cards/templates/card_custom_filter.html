@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load list_filters %}
+
+{% block content %}
+
+<h1>by suit</h1>
+{% for card in cards|suit:"diamond"  %}
+        {{ card.rank.capitalize }} of {{ card.get_suit_display.capitalize }}s <br>
+{% endfor %}
+
+
+
+<hr>
+<h1>by rank</h1>
+{% for card in cards|rank:"ace"  %}
+        {{ card.rank.capitalize }} of {{ card.get_suit_display.capitalize }}s <br>
+{% endfor %}
+
+
+<hr>
+<h1>random deck</h1>
+    {% for card in cards|random  %}
+        {{ card.rank.capitalize }} of {{ card.get_suit_display.capitalize }}s <br>
+    {% endfor %}
+
+
+
+<hr>
+<h1>Deals X cards</h1>
+    {% for card in cards|deals:5  %}
+        {{ card.rank.capitalize }} of {{ card.get_suit_display.capitalize }}s <br>
+    {% endfor %}
+
+
+
+<hr>
+<h1>Deals X random cards</h1>
+    {% for card in cards|random|deals:5  %}
+        {{ card.rank.capitalize }} of {{ card.get_suit_display.capitalize }}s <br>
+    {% endfor %}
+
+<hr>
+<h1>Deals X  cards randomly</h1>
+    {% for card in cards|deals:5|random  %}
+        {{ card.rank.capitalize }} of {{ card.get_suit_display.capitalize }}s <br>
+    {% endfor %}
+
+{% endblock %}

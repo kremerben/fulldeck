@@ -1,0 +1,13 @@
+{% extends 'base_template.html' %}
+
+{% block title %}BLACK JACK!!!!{% endblock %}
+
+{% block content %}
+    <h2>Blackjack!</h2>
+    <p>Here's your hand...</p>
+    {% include 'includes/hand.html' with cards=user_cards %}
+
+    <div style="clear: both;height:30px;"></div>
+    <p>Dealer's hand...</p>
+    {% include 'includes/hand.html'  with cards=dealer_cards  %}
+{% endblock content %}

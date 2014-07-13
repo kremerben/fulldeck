@@ -1,0 +1,61 @@
+{% load staticfiles %}
+{% load humanize %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}AWESOME!!!{% endblock %}</title>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="{% static 'js/cards.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/morecards.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cards.css' %}">
+</head>
+    <body>
+    <nav>
+        <div>
+            <img id="joker" width="80px" src="{% static "img/red_joker.jpg" %}">
+
+            <a href="{% url 'deal5' %}">Deal 5</a> |
+            <a href="{% url 'poker' %}">Poker</a> |
+            <a href="{% url 'blackjack' %}">Blackjack</a> |
+            <a href="{% url 'war' %}">War!</a> +
+{#            <a href="{% url 'hearts' %}">Hearts</a> +#}
+            <span>
+    {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}">{{ user.username }}</a> |
+        {% if user.is_staff %}
+            <a href="{% url 'admin:index' %}">Admin</a> |
+        {% endif %}
+        <a href="{% url 'logout' %}">Logout</a>
+
+    {% else %}
+        <a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Register</a>
+    {% endif %}
+</span>
+<img id="black_joker" width="80px" src="{% static "media/card_images/black_joker.jpg" %}">
+
+        </div>
+    </nav>
+
+        <h1>Welcome to my Card Game!</h1>
+        {% block content %}{% endblock content %}
+    </body>
+    <footer>
+        {% block footer %}
+            &copy; CARDS! Inc. {% now "Y" %} |
+                        <a href="{% url 'faq' %}">FAQ</a> |
+
+                        <span>
+    {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}">{{ user.username }}</a> |
+        {% if user.is_staff %}
+            <a href="{% url 'admin:index' %}">Admin</a> |
+        {% endif %}
+        <a href="{% url 'logout' %}">Logout</a> |
+    {% else %}
+        <a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Register</a>
+    {% endif %}
+</span>
+
+        {% endblock %}
+    </footer>
+</html>

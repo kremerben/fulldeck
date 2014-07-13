@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+    .odd {
+        color: blue;
+    }
+</style>
+
+</head>
+<body>
+
+We have {{ cards | length }} cards!
+It's {% now "SHORT_DATETIME_FORMAT" %}!
+{% for card in cards %}
+    <p class="{% cycle 'even' 'odd' %}">
+            Capitalized Suit: {{ card.get_suit_display | capfirst }} <br>
+            Uppercased Rank: {{ card.rank | upper }}
+    </p>
+{% endfor %}
+
+<hr>
+
+<div>
+<h1>U a f t t s s t o t f l i s </h1>
+<p>
+    {% for card in cards|dictsort:'suit' %}
+{#        <p>Suit: {{ card.get_suit_display.capitalize }}, Rank: {{ card.rank }}</p>#}
+        {{ card.rank.capitalize }} of {{ card.get_suit_display.capitalize|first }} <br>
+    {% endfor %}
+</p>
+</div>
+<hr>
+
+<div>
+<h1>Now </h1>
+<p>
+It's {% now 'F j' %}!
+</p>
+</div>
+<hr>
+<div>
+<h1>Link </h1>
+<p>
+  <a href="{% url "faces" %}">Faces</a>
+</p>
+</div>
+<hr>
+<div>
+<h1>Random Card </h1>
+<p>
+        {%  with cards|random as random_card  %}
+        {{ random_card.rank.capitalize }} of {{ random_card.get_suit_display.capitalize }}s <br>
+        {% endwith %}
+</p>
+</div>
+<hr>
+
+<div>
+<h1>display only the last card from the list </h1>
+<p>
+        {%  with cards.all.reverse|first as first_card  %}
+        {{ first_card.rank.capitalize }} of {{ first_card.get_suit_display.capitalize }}s <br>
+        {% endwith %}
+</p>
+</div>
+<hr>
+
+<div>
+<h1>regroup template tag to display the cards by their Suit </h1>
+<p>
+{% regroup cities by country as country_list %}
+
+<ul>
+{% for country in country_list %}
+    <li>{{ country.grouper }}
+    <ul>
+        {% for item in country.list %}
+          <li>{{ item.name }}: {{ item.population }}</li>
+        {% endfor %}
+    </ul>
+    </li>
+{% endfor %}
+</ul>
+</p>
+</div>
+<hr>
+
+{% load list_filters %}
+
+{% for card in cards|suit:"diamond"  %}
+    <p>Suit: {{ card.get_suit_display }}, Rank: {{ card.rank }}</p>
+{% endfor %}
+
+</body>
+</html>

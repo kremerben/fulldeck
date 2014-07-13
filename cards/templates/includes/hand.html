@@ -1,0 +1,11 @@
+{% for card in cards %}
+{#    <p>Suit: {{ card.get_suit_display }}, Rank: {{ card.rank }}</p>#}
+       <div class="card">
+        {% if card.alt_image %}
+            <img width="110px" src="{{ card.alt_image.url }}">
+        {% else %}
+           <img  width="110px" src="{{ card.image.url }}">
+        {% endif %}
+{#       {{ card.rank.capitalize }} of {{ card.get_suit_display.capitalize }}s#}
+       </div>
+{% endfor %}

@@ -1,0 +1,15 @@
+{% extends 'base_template.html' %}
+{% load list_filters %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1> a deck of cards </h1>
+<p>
+    {% for card in cards|dictsort:'suit' %}
+{#        <p>Suit: {{ card.get_suit_display.capitalize }}, Rank: {{ card.rank }}</p>#}
+        {{ card.rank.capitalize }} of {{ card.get_suit_display.capitalize }}{{ 2|pluralize }} <br>
+    {% endfor %}
+</p>
+
+{% endblock content %}

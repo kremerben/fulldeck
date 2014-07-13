@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body style="font-size: 1.5em; font-family: Helvetica, sans-serif;">
+<div>
+<h1> diamonds and hearts </h1>
+<p>
+    {% for card in cards reversed %}
+        {% if card.suit == Card.HEART or card.suit == Card.DIAMOND %}
+        {{ card.rank.capitalize }} of {{ card.get_suit_display.capitalize }}{{ 2|pluralize }} <br>
+        {%  endif %}
+    {% endfor %}
+</p>
+</div>
+
+</body>
+</html>

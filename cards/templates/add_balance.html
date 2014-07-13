@@ -1,0 +1,17 @@
+{% extends 'base_template.html' %}
+
+{% block title %}add balance!!!!{% endblock %}
+
+{% block content %}
+    <h2>add balance!</h2>
+
+    <form method="post" action=".">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit" value="Submit">
+    </form>
+
+
+
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends 'base_template.html' %}
+
+{% block title %}War!!!!{% endblock %}
+
+{% block content %}
+    <h2>Your Balance: {{ user.balance }} <a style="font-size: x-small;" href="{% url 'add_balance' %}">Add Balance</a>
+</h2>
+     <div style="float:left;height:50px;">
+   <p>Here's your hand...</p>
+    {% include 'includes/hand.html' with cards=user_cards %}
+</div>
+    <div style="float:left;margin-left:50px;height:50px;width:200px;text-align: center;">
+        {% if result == 1 %}
+        <h1>{{ user.first_name }} wins</h1>
+    {% elif result == -1 %}
+        <h1>Dealer wins</h1>
+    {% else %}
+        <h1>Tie</h1>
+    {% endif %}
+{#    <button><a href="/war">Bet One</a></button>#}
+
+        <form method="post" action=".">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input style="font-size: 2em;height:30px;width: 100px;" type="submit" value="Bet">
+
+    </div>
+
+    <div style="float:left;margin-left:50px;height:50px;">
+    <p>Dealer's hand...</p>
+    {% include 'includes/hand.html'  with cards=dealer_cards  %}
+        </div>
+
+{% endblock content %}
