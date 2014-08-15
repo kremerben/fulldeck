@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render, redirect
+from django.views.decorators.cache import cache_page
 from fulldeck import settings
 from forms import EmailUserCreationForm, AddBalance, Bet
 from models import Card, WarGame, Player
@@ -9,7 +10,7 @@ import time
 from datetime import datetime
 from django.db.models import Count, Sum
 
-
+@cache_page(60)
 def home(request):
     data = {
         'cards': Card.objects.all()

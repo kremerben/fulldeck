@@ -43,15 +43,18 @@ INSTALLED_APPS = (
     'south',
     'debug_toolbar',
     'django.contrib.humanize',
+    'compressor',
 )
 
 MIDDLEWARE_CLASSES = (
+    # 'django.middleware.cache.UpdateCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
 ROOT_URLCONF = 'fulldeck.urls'
@@ -103,6 +106,16 @@ EMAIL_HOST_USER = 'kremer.ads@gmail.com'
 EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = 'kremer.ads@gmail.com'
+
+COMPRESS_ROOT = os.path.join(PROJECT_ROOT, "static")
+COMPRESS_CSS_FILTERS = ['compressor.filters.cssmin.CSSMinFilter']
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
+
+
 
 
 try:

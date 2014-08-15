@@ -1,13 +1,18 @@
 {% load staticfiles %}
 {% load humanize %}
+{% load compress %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>{% block title %}AWESOME!!!{% endblock %}</title>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+{% compress js %}
     <script src="{% static 'js/cards.js' %}"></script>
+{% endcompress %}
+{% compress css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/morecards.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/cards.css' %}">
+{% endcompress %}
 </head>
     <body>
     <nav>

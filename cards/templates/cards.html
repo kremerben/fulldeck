@@ -4,7 +4,7 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<h1> a deck of cards </h1>
+<h1> two decks of cards </h1>
 <p>
     {% for card in cards|dictsort:'suit' %}
 {#        <p>Suit: {{ card.get_suit_display.capitalize }}, Rank: {{ card.rank }}</p>#}
