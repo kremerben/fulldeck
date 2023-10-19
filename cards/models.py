@@ -23,7 +23,7 @@ class Card(models.Model):
     alt_image = models.ImageField(upload_to='card_images', blank=True, null=True)
 
     def __unicode__(self):
-        return "{} of {}s".format(self.rank.capitalize(), Card.SUITS[self.suit][1].capitalize())
+        return f"{self.rank.capitalize()} of {Card.SUITS[self.suit][1].capitalize()}s"
 
     def get_ranking(self):
         rankings = {
