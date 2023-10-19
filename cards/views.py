@@ -68,9 +68,7 @@ def profile(request):
     war_ties = request.user.wargame_set.filter(result=WarGame.TIE).count()
     war_losses = request.user.wargame_set.filter(result=WarGame.LOSS).count()
     total_games = request.user.wargame_set.count()
-    percent_win = 0
-    if total_games != 0:
-        percent_win = war_wins*100.0/total_games
+    percent_win = war_wins*100.0/total_games if total_games != 0 else 0
     score = war_wins - war_losses
     total_war_wins = WarGame.objects.filter(result=WarGame.WIN).count()
     total_war_ties = WarGame.objects.filter(result=WarGame.TIE).count()
@@ -116,8 +114,8 @@ def blackjack(request):
     user_cards = cards[:2]
     for card in user_cards:
         if card.rank == 'ace':
-            text_content = 'Congrats {} Ace of {}s at {}.'.format(request.user.first_name, card.rank, datetime.now() )
-            html_content = '<h2>Congrats {} Ace of {}s at {}.</h2>'.format(request.user.first_name, card.get_suit_display(), datetime.now())
+            text_content = f'Congrats {request.user.first_name} Ace of {card.rank}s at {datetime.now()}.'
+            html_content = f'<h2>Congrats {request.user.first_name} Ace of {card.get_suit_display()}s at {datetime.now()}.</h2>'
             msg = EmailMultiAlternatives("Ace!", text_content, settings.DEFAULT_FROM_EMAIL, [request.user.email])
             msg.attach_alternative(html_content, "text/html")
             msg.send()
